@@ -12,5 +12,5 @@ http://www.ngdc.noaa.gov/geomag/WMM/DoDWMM.shtml
 		lat: 44.53461,
 		lon: -109.05572
 	});
-	console.log(info);
+	console.log('declination:', info.decl);
 ```
