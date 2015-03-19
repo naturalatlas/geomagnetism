@@ -4,7 +4,7 @@
   "description": "Get geomagnetic field information in javascript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,10 @@
     "north",
     "declination"
   ],
+  "devDependencies": {
+    "mocha": "~1.x",
+    "chai": "~1.9.1"
+  },
   "author": "Brandon Reavis",
   "license": "Apache License, v2.0",
   "bugs": {

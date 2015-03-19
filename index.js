@@ -21,7 +21,6 @@ function load(data){
 	if(!data) {
 		var filename = path.resolve(__dirname, 'WMM.COF');
 		data = fs.readFileSync(filename, {encoding: 'utf8'});
-		console.log(data.split)
 	}
 	base_model = new Model();
 	base_model.load(data);
