@@ -1,4 +1,3 @@
-var fs = require('fs');
 var path = require('path');
 var Model = require('./lib/model.js');
 
@@ -17,13 +16,8 @@ function getModel(date){
 	return models[year];
 }
 
-function load(data){
-	if(!data) {
-		var filename = path.resolve(__dirname, 'WMM.COF');
-		data = fs.readFileSync(filename, {encoding: 'utf8'});
-	}
+function load(options){
 	base_model = new Model();
-	base_model.load(data);
 	models = {};
 }
 
