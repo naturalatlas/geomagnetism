@@ -45,18 +45,27 @@ function getModel(test){
 var values = loadTestValues();
 
 describe("model", function(){
-	it("should return expected values", function(){
-		values.forEach(function(test){
-			if(test.alt > 0) return;
-			var model = getModel(test);
-			var info = model.point([test.lat, test.lon]);
-			assert.closeTo(info.incl, test.incl, tolerances.incl, 'inclination');
-			assert.closeTo(info.decl, test.decl, tolerances.decl, 'declination');
-			assert.closeTo(info.x, test.x, tolerances.x, 'x');
-			assert.closeTo(info.y, test.y, tolerances.y, 'y');
-			assert.closeTo(info.z, test.z, tolerances.z, 'z');
-			assert.closeTo(info.h, test.h, tolerances.h, 'h');
-			assert.closeTo(info.f, test.f, tolerances.f, 'f');
+	describe("point()", function(){
+		it("should return expected values", function(){
+			values.forEach(function(test){
+				if(test.alt > 0) return;
+				var model = getModel(test);
+				var info = model.point([test.lat, test.lon]);
+				assert.closeTo(info.incl, test.incl, tolerances.incl, 'inclination');
+				assert.closeTo(info.decl, test.decl, tolerances.decl, 'declination');
+				assert.closeTo(info.x, test.x, tolerances.x, 'x');
+				assert.closeTo(info.y, test.y, tolerances.y, 'y');
+				assert.closeTo(info.z, test.z, tolerances.z, 'z');
+				assert.closeTo(info.h, test.h, tolerances.h, 'h');
+				assert.closeTo(info.f, test.f, tolerances.f, 'f');
+			});
+		});
+	});
+	describe("getTimedModel()", function(){
+		it("should throw if date is outside of valid range", function(){
+			assert.throws(function(){
+				geomagnetism.model(new Date("1/1/1999"));
+			}, RangeError);
 		});
 	});
 });
