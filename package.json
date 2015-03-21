@@ -1,14 +1,15 @@
 {
-  "name": "geomagnetic-model",
+  "name": "geomagnetism",
   "version": "0.0.1",
-  "description": "Get geomagnetic field information in javascript",
+  "description": "Computes geomagnetic field information",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "test-ci": "mocha -R tap"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/naturalatlas/geomagnetic-model.git"
+    "url": "https://github.com/naturalatlas/geomagnetism.git"
   },
   "keywords": [
     "geomag",
@@ -16,7 +17,8 @@
     "magnetic",
     "field",
     "north",
-    "declination"
+    "declination",
+    "wmm"
   ],
   "devDependencies": {
     "mocha": "~1.x",
@@ -25,7 +27,7 @@
   "author": "Brandon Reavis",
   "license": "Apache License, v2.0",
   "bugs": {
-    "url": "https://github.com/naturalatlas/geomagnetic-model/issues"
+    "url": "https://github.com/naturalatlas/geomagnetism/issues"
   },
-  "homepage": "https://github.com/naturalatlas/geomagnetic-model"
+  "homepage": "https://github.com/naturalatlas/geomagnetism"
 }

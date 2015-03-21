@@ -1,4 +1,4 @@
-var Model = require('../index.js');
+var geomagnetism = require('../index.js');
 var assert = require('chai').assert;
 var path = require('path');
 var fs = require('fs');
@@ -11,8 +11,7 @@ var tolerances = {
 	z: 250, //nT
 	h: 250, //nT
 	f: 250 //nT
-}
-
+};
 
 function loadTestValues(){
 	var str = fs.readFileSync(__dirname + '/values.csv', {encoding: 'utf8'});
@@ -40,7 +39,7 @@ function getModel(test){
 	t0 = new Date(year_int, 0, 1);
 	t1 = new Date(t0.valueOf() + dms);
 
-	return Model.get(t1);
+	return geomagnetism.model(t1);
 }
 
 var values = loadTestValues();
@@ -50,7 +49,7 @@ describe("model", function(){
 		values.forEach(function(test){
 			if(test.alt > 0) return;
 			var model = getModel(test);
-			var info = model.getPointInfo(test);
+			var info = model.point([test.lat, test.lon]);
 			assert.closeTo(info.incl, test.incl, tolerances.incl, 'inclination');
 			assert.closeTo(info.decl, test.decl, tolerances.decl, 'declination');
 			assert.closeTo(info.x, test.x, tolerances.x, 'x');
