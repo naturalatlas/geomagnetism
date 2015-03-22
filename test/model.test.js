@@ -4,13 +4,13 @@ var path = require('path');
 var fs = require('fs');
 
 var tolerances = {
-	incl: 1, //deg
-	decl: 2, //deg
-	x: 250, //nT
-	y: 250, //nT
-	z: 250, //nT
-	h: 250, //nT
-	f: 250 //nT
+	incl: 0.01, //deg
+	decl: 0.01, //deg
+	x: 5, //nT
+	y: 5, //nT
+	z: 5, //nT
+	h: 5, //nT
+	f: 5 //nT
 };
 
 function loadTestValues(){
@@ -67,5 +67,15 @@ describe("model", function(){
 				geomagnetism.model(new Date("1/1/1999"));
 			}, RangeError);
 		});
+		it("should get a different model for a different date", function(){
+			var pt = [44.53461, -109.05572];
+			var model0 = geomagnetism.model();
+			var model1 = geomagnetism.model(new Date("3/22/2018"));
+			var decl0 = model0.point(pt).decl;
+			var decl1 = model1.point(pt).decl;
+			assert.notEqual(model0, model1);
+			assert(Math.abs(decl1 - decl0) > 0.001, 'declination should be different');
+		});
+
 	});
 });

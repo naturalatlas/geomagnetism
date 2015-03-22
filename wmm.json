@@ -372,6 +372,7 @@
     0
   ],
   "n_max": 12,
+  "n_max_sec_var": 12,
   "epoch": 2015,
   "name": "WMM-2015",
   "start_date": "2014-12-15T07:00:00.000Z",
