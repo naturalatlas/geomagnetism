@@ -30,15 +30,13 @@ function loadTestValues(){
 }
 
 function getModel(test){
-	var t0, t1;
+	var t1;
 	var year = test.date;
 	var year_int = Math.floor(year);
 	var year_fpart = year - year_int;
 	var dms = 1000*3600*24*365*year_fpart;
 
-	t0 = new Date(year_int, 0, 1);
-	t1 = new Date(t0.valueOf() + dms);
-
+	t1 = new Date(Date.UTC(year_int) + dms);
 	return geomagnetism.model(t1);
 }
 
