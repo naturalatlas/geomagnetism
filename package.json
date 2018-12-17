@@ -1,6 +1,6 @@
 {
   "name": "geomagnetism",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Computes geomagnetic field information",
   "main": "index.js",
   "scripts": {
