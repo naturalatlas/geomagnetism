@@ -60,6 +60,14 @@ describe("model", function(){
 				assert.closeTo(info.f, test.f, tolerances.f, 'f');
 			});
 		});
+		it("should return value for current date", function(){
+			var date = new Date();
+			var info = geomagnetism.model(date).point([44.53461, -109.05572]);
+		});
+		it("should return value for current date + 1 year", function(){
+			var date = new Date(Date.now() + 1000 * 3600 * 24 * 365);
+			var info = geomagnetism.model(date).point([44.53461, -109.05572]);
+		});
 	});
 	describe("getTimedModel()", function(){
 		it("should throw if date is outside of valid range", function(){
