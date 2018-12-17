@@ -21,11 +21,11 @@
     "wmm"
   ],
   "devDependencies": {
-    "mocha": "~1.x",
-    "chai": "~1.9.1"
+    "mocha": "~5.x",
+    "chai": "~4.2.0"
   },
   "author": "Brandon Reavis",
-  "license": "Apache License, v2.0",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/naturalatlas/geomagnetism/issues"
   },
