@@ -12,21 +12,21 @@ $ npm install geomagnetism --save
 ### Usage
 
 ```js
-var geomagnetism = require('geomagnetism');
+const geomagnetism = require('geomagnetism');
 
 // information for "right now"
-var info = geomagnetism.model().point([44.53461, -109.05572]);
+const info = geomagnetism.model().point([44.53461, -109.05572]);
 console.log('declination:', info.decl);
 
 // use a specific date
-var model = geomagnetism.model(new Date('12/25/2017'));
-var info = model.point([44.53461, -109.05572]);
+const model = geomagnetism.model(new Date('12/25/2017'));
+const info = model.point([44.53461, -109.05572]);
 console.log('declination:', info.decl);
 ```
 
 ## License
 
-Copyright &copy; 2015–2018 [Natural Atlas, Inc.](https://naturalatlas.com/) & [Contributors](https://github.com/naturalatlas/geomagnetism/graphs/contributors)
+Copyright &copy; 2015–2021 [Natural Atlas, Inc.](https://naturalatlas.com/) & [Contributors](https://github.com/naturalatlas/geomagnetism/graphs/contributors)
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at: http://www.apache.org/licenses/LICENSE-2.0
 
