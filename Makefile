@@ -27,8 +27,10 @@ ifeq ($(strip $(version)),)
 else
 ifneq ($(shell git diff --stat),)
 	@echo "Changes must be committed before running a release"
-endif
+else
 	npm version $(version)
 	npm publish
 	git push origin master
 	git push origin --tags
+endif
+endif
