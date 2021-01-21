@@ -3,6 +3,7 @@ var geomagnetism = module.exports = {};
 
 var models = null;
 var modelData = [
+	require('./data/wmm-2020.json'),
 	require('./data/wmm-2015v2.json'),
 	require('./data/wmm-2015.json'),
 ];
