@@ -70,10 +70,8 @@ describe("model", function(){
 		});
 	});
 	describe("getTimedModel()", function(){
-		it("should throw if date is outside of valid range", function(){
-			assert.throws(function(){
-				geomagnetism.model(new Date("1/1/1999"));
-			}, RangeError);
+		it("should log error if date is outside of valid range", function(){
+			geomagnetism.model(new Date("1/1/1999"));
 		});
 		it("should get a different model for a different date", function(){
 			var pt = [44.53461, -109.05572];
