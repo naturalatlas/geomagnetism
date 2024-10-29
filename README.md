@@ -1,6 +1,5 @@
 # geomagnetism
 [![NPM version](http://img.shields.io/npm/v/geomagnetism.svg?style=flat)](https://www.npmjs.org/package/geomagnetism)
-[![Build Status](http://img.shields.io/travis/cristianob/geomagnetism/master.svg?style=flat)](https://travis-ci.org/cristianob/geomagnetism)
 
 Get magnetic declination for given time and place. It's an adaptation of the [World Magnetic Model](http://www.ngdc.noaa.gov/geomag/WMM/DoDWMM.shtml) by the [NOAA National Geophysical Data Center](https://www.ngdc.noaa.gov/).
 
