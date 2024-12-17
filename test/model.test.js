@@ -1,6 +1,5 @@
 var geomagnetism = require('../index.js');
 var assert = require('chai').assert;
-var path = require('path');
 var fs = require('fs');
 
 var tolerances = {
@@ -48,11 +47,10 @@ describe("model", function(){
 	describe("point()", function(){
 		it("should return expected values", function(){
 			values.forEach(function(test){
-				if(test.alt > 0) return;
 				var model = getModel(test);
-				var info = model.point([test.lat, test.lon]);
-				assert.closeTo(info.incl, test.incl, tolerances.incl, 'inclination');
-				assert.closeTo(info.decl, test.decl, tolerances.decl, 'declination');
+				var info = model.point([test.lat, test.lon, test.alt]);
+				assert.closeTo(info.incl, test.incl, tolerances.incl, 'inclination ' + test.date);
+				assert.closeTo(info.decl, test.decl, tolerances.decl, 'declination ' + test.date);
 				assert.closeTo(info.x, test.x, tolerances.x, 'x');
 				assert.closeTo(info.y, test.y, tolerances.y, 'y');
 				assert.closeTo(info.z, test.z, tolerances.z, 'z');
@@ -62,16 +60,22 @@ describe("model", function(){
 		});
 		it("should return value for current date", function(){
 			var date = new Date();
-			var info = geomagnetism.model(date).point([44.53461, -109.05572]);
+			geomagnetism.model(date).point([44.53461, -109.05572]);
 		});
 		it("should return value for current date + 1 year", function(){
-			var date = new Date(Date.now() + 1000 * 3600 * 24 * 365);
-			var info = geomagnetism.model(date).point([44.53461, -109.05572]);
+			var date = new Date();
+			date.setFullYear(date.getFullYear() + 1);
+			geomagnetism.model(date).point([44.53461, -109.05572]);
 		});
 	});
 	describe("getTimedModel()", function(){
-		it("should log error if date is outside of valid range", function(){
-			geomagnetism.model(new Date("1/1/1999"));
+		it("should log error if date is outside of valid range below and use the first model", function(){
+			var model = geomagnetism.model(new Date("1/1/1999"));
+			assert.equal(model.start_date.getFullYear(), 2014);
+		});
+		it("should log error if date is outside of valid range above and use the last model", function(){
+			var model = geomagnetism.model(new Date("1/1/2030"));
+			assert.equal(model.start_date.getFullYear(), 2024);
 		});
 		it("should get a different model for a different date", function(){
 			var pt = [44.53461, -109.05572];
