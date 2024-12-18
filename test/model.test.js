@@ -69,12 +69,17 @@ describe("model", function(){
 		});
 	});
 	describe("getTimedModel()", function(){
-		it("should log error if date is outside of valid range below and use the first model", function(){
-			var model = geomagnetism.model(new Date("1/1/1999"));
+		it("should throw error if date is outside of valid range and should_throw is true", function(){
+			assert.throws(function(){
+				geomagnetism.model(new Date("1/1/1999"), true);
+			}, Error);
+		});
+		it("should log error if date is outside of valid range below and should_throw is false", function(){
+			var model = geomagnetism.model(new Date("1/1/1999"), false);
 			assert.equal(model.start_date.getFullYear(), 2014);
 		});
-		it("should log error if date is outside of valid range above and use the last model", function(){
-			var model = geomagnetism.model(new Date("1/1/2030"));
+		it("should log error if date is outside of valid range above and should_throw is false", function(){
+			var model = geomagnetism.model(new Date("1/1/2030"), false);
 			assert.equal(model.start_date.getFullYear(), 2024);
 		});
 		it("should get a different model for a different date", function(){
