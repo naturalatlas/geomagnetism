@@ -25,7 +25,7 @@ var modelData = [
 ];
 
 
-geomagnetism.model = function (date, should_throw) {
+geomagnetism.model = function (date, should_throw = true) {
 	date = date || new Date();
 	const ts = date.getTime();
 
