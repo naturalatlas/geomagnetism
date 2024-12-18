@@ -25,7 +25,7 @@ var modelData = [
 ];
 
 
-geomagnetism.model = function (date) {
+geomagnetism.model = function (date, should_throw) {
 	date = date || new Date();
 	const ts = date.getTime();
 
@@ -43,10 +43,10 @@ geomagnetism.model = function (date) {
 
 	// If no matching model found, use the latest
 	if (!matchingModelData) {
-		matchingModelData = modelData[0]; // latest (will throw error)
+		matchingModelData = modelData[0]; // latest (will throw error if should_throw is true)
 	}
 
 	const matchingModel = new Model(matchingModelData.file);
 
-	return matchingModel.getTimedModel(date);
+	return matchingModel.getTimedModel(date, should_throw);
 };
