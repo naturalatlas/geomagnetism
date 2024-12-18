@@ -1,5 +1,5 @@
 {
-  "name": "@cristianob/geomagnetism",
+  "name": "geomagnetism",
   "types": "geomagnetism.d.ts",
   "version": "0.2.0",
   "description": "Computes geomagnetic field information",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cristianob/geomagnetism.git"
+    "url": "https://github.com/naturalatlas/geomagnetism.git"
   },
   "keywords": [
     "geomag",
@@ -28,7 +28,7 @@
   "author": "Brandon Reavis, Cristiano Costa",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/cristianob/geomagnetism/issues"
+    "url": "https://github.com/naturalatlas/geomagnetism/issues"
   },
-  "homepage": "https://github.com/cristianob/geomagnetism"
+  "homepage": "https://github.com/naturalatlas/geomagnetism"
 }
