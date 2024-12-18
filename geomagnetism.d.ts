@@ -1,4 +1,4 @@
-declare module "@cristianob/geomagnetism" {
+declare module "geomagnetism" {
   export interface GeomagnetismPoint {
     x: number;
     y: number;
