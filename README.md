@@ -59,7 +59,7 @@ geomagnetism.model(date, { allowOutOfBoundsModel: true });
 ```
 
 - `date`: *(optional)* A JavaScript Date object. Defaults to the current date if not specified.
-- allowOutOfBoundsModel: *(optional)* A boolean. If not specified or true, throws an error if the date is out of range. If false, falls back to the nearest available model.
+- allowOutOfBoundsModel: *(optional)* A boolean. If not specified or false, throws an error if the date is out of range. If true, falls back to the nearest available model.
 
 **Examples:**
 
