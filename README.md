@@ -48,14 +48,14 @@ const infoWithAltitude = model.point([44.53461, -109.05572, 1.5]);
 console.log('Declination at altitude:', infoWithAltitude.decl, 'degrees');
 ```
 
-## Handling Out-of-Range Dates & The `should_throw` Parameter
+## Handling Out-of-Range Dates
 
-The `geomagnetism.model()` function determines the best available World Magnetic Model for the date you provide. If the given date falls outside the known range of the WMM data files, by default (should_throw = true), the function will throw an error indicating that no suitable model is found for the given date.
+The `geomagnetism.model()` function determines the best available World Magnetic Model for the date you provide. If the given date falls outside the known range of the WMM data files, by default (allowOutOfBoundsModel = false), the function will throw an error indicating that no suitable model is found for the given date.
 
-If you would prefer that the library "fall back" to the closest available model rather than throwing an error, you can explicitly pass false as the second parameter.
+If you would prefer that the library "fall back" to the closest available model rather than throwing an error, you can explicitly pass true to allowOutOfBoundsModel option.
 
 ```js
-geomagnetism.model(date, should_throw);
+geomagnetism.model(date, { allowOutOfBoundsModel: true });
 ```
 
 - `date`: *(optional)* A JavaScript Date object. Defaults to the current date if not specified.
@@ -86,7 +86,7 @@ console.log('Declination using fallback model:', fallbackInfo.decl);
 
 ## License
 
-Copyright &copy; 2015–2024 [Natural Atlas, Inc.](https://naturalatlas.com/) & [NexAtlas](https://nexatlas.com) & [Contributors](https://github.com/naturalatlas/geomagnetism/graphs/contributors)
+Copyright &copy; 2015–2024 [Natural Atlas, Inc.](https://naturalatlas.com/) & [Contributors](https://github.com/naturalatlas/geomagnetism/graphs/contributors)
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at: http://www.apache.org/licenses/LICENSE-2.0
 

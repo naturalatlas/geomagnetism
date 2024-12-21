@@ -25,9 +25,12 @@ var modelData = [
 ];
 
 
-geomagnetism.model = function (date, should_throw = true) {
+geomagnetism.model = function (date, options) {
 	date = date || new Date();
 	const ts = date.getTime();
+
+	options = options || {}
+	const allowOutOfBoundsModel = options.allowOutOfBoundsModel || false
 
 	// Get the latest matching model 
 	let matchingModelData = modelData.find((model) => {
@@ -43,10 +46,10 @@ geomagnetism.model = function (date, should_throw = true) {
 
 	// If no matching model found, use the latest
 	if (!matchingModelData) {
-		matchingModelData = modelData[0]; // latest (will throw error if should_throw is true)
+		matchingModelData = modelData[0]; // latest (will throw error if allowOutOfBoundsModel is true)
 	}
 
 	const matchingModel = new Model(matchingModelData.file);
 
-	return matchingModel.getTimedModel(date, should_throw);
+	return matchingModel.getTimedModel(date, allowOutOfBoundsModel);
 };
