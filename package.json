@@ -25,7 +25,7 @@
     "mocha": "~5.x",
     "chai": "~4.2.0"
   },
-  "author": "Brandon Reavis, Cristiano Costa",
+  "author": "Brandon Reavis",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/naturalatlas/geomagnetism/issues"
