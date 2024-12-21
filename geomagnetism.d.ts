@@ -22,7 +22,7 @@ declare module "geomagnetism" {
     point(geoPoint: number[]): GeomagnetismPoint;
   }
 
-  interface GeomagnetismOptions {
+  export interface GeomagnetismOptions {
     allowOutOfBoundsModel: boolean;
   }
 
