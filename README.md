@@ -50,7 +50,7 @@ console.log('Declination at altitude:', infoWithAltitude.decl, 'degrees');
 
 ## Handling Out-of-Range Dates
 
-The `geomagnetism.model()` function determines the best available World Magnetic Model for the date you provide. If the given date falls outside the known range of the WMM data files, by default (allowOutOfBoundsModel = false), the function will throw an error indicating that no suitable model is found for the given date.
+The `geomagnetism.model()` function determines the best available World Magnetic Model for the date you provide. If the given date falls outside the known range of the WMM data files, by default (`allowOutOfBoundsModel = false`), the function will throw an error indicating that no suitable model is found for the given date.
 
 If you would prefer that the library "fall back" to the closest available model rather than throwing an error, you can explicitly pass true to allowOutOfBoundsModel option.
 
@@ -59,7 +59,7 @@ geomagnetism.model(date, { allowOutOfBoundsModel: true });
 ```
 
 - `date`: *(optional)* A JavaScript Date object. Defaults to the current date if not specified.
-- allowOutOfBoundsModel: *(optional)* A boolean. If not specified or false, throws an error if the date is out of range. If true, falls back to the nearest available model.
+- `allowOutOfBoundsModel`: *(optional)* A boolean. If not specified or false, throws an error if the date is out of range. If true, falls back to the nearest available model.
 
 **Examples:**
 
