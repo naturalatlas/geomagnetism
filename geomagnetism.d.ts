@@ -8,6 +8,7 @@ declare module "geomagnetism" {
     incl: number;
     decl: number;
   }
+
   export interface GeomagnetismModel {
     epoch: number;
     start_date: Date;
@@ -21,6 +22,9 @@ declare module "geomagnetism" {
     point(geoPoint: number[]): GeomagnetismPoint;
   }
 
-  export function model(date: Date): GeomagnetismModel;
-  export function model(): GeomagnetismModel;
+  interface GeomagnetismOptions {
+    allowOutOfBoundsModel: boolean;
+  }
+
+  export function model(date?: Date, options?: GeomagnetismOptions): GeomagnetismModel;
 }

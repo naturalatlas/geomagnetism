@@ -25,11 +25,10 @@ var modelData = [
 ];
 
 
-geomagnetism.model = function (date, options) {
+geomagnetism.model = function (date, options = {}) {
 	date = date || new Date();
 	const ts = date.getTime();
 
-	options = options || {}
 	const allowOutOfBoundsModel = options.allowOutOfBoundsModel || false
 
 	// Get the latest matching model 
