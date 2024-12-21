@@ -59,7 +59,7 @@ geomagnetism.model(date, { allowOutOfBoundsModel: true });
 ```
 
 - `date`: *(optional)* A JavaScript Date object. Defaults to the current date if not specified.
-- `should_throw`: *(optional)* A boolean. If not specified or true, throws an error if the date is out of range. If false, falls back to the nearest available model.
+- allowOutOfBoundsModel: *(optional)* A boolean. If not specified or true, throws an error if the date is out of range. If false, falls back to the nearest available model.
 
 **Examples:**
 
@@ -68,14 +68,14 @@ const geomagnetism = require('geomagnetism');
 
 // Strict behavior (default): If the date is out of range, an error is thrown
 try {
-  let model = geomagnetism.model(new Date('1900-01-01'));  // should_throw defaults to true
+  let model = geomagnetism.model(new Date('1900-01-01'));  // allowOutOfBoundsModel defaults to false
   let info = model.point([44.53461, -109.05572]);
 } catch (err) {
   console.error('Error (strict mode):', err.message);
 }
 
 // Fallback behavior: If the date is out of range, it uses the closest model
-let fallbackModel = geomagnetism.model(new Date('1900-01-01'), false);
+let fallbackModel = geomagnetism.model(new Date('1900-01-01'), { allowOutOfBoundsModel: true });
 let fallbackInfo = fallbackModel.point([44.53461, -109.05572]);
 console.log('Declination using fallback model:', fallbackInfo.decl);
 ```
