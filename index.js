@@ -1,7 +1,7 @@
-var Model = require('./lib/model.js');
-var geomagnetism = module.exports = {};
+const Model = require('./lib/model.js');
+const geomagnetism = module.exports = {};
 
-var modelData = [
+const modelData = [
 	{
 		file: require('./data/wmm-2025.json'),
 		startDate: new Date("2024-11-13T03:00:00.000Z"),
@@ -29,7 +29,7 @@ geomagnetism.model = function (date, options = {}) {
 	date = date || new Date();
 	const ts = date.getTime();
 
-	const allowOutOfBoundsModel = options.allowOutOfBoundsModel || false
+	const allowOutOfBoundsModel = (options && options.allowOutOfBoundsModel) || false;
 
 	// Get the latest matching model 
 	let matchingModelData = modelData.find((model) => {

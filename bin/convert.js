@@ -18,7 +18,7 @@ var output_filename = process.argv[3];
 if(!input_filename) exit("Input filename must be provided.");
 if(!output_filename) exit("Output filename must be provided.");
 
-//get parser by input file extension
+// get parser by input file extension
 var ext = path.extname(input_filename).toLowerCase().substr(1);
 var parser;
 try {
