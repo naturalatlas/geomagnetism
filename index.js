@@ -1,34 +1,54 @@
 var Model = require('./lib/model.js');
 var geomagnetism = module.exports = {};
 
-var models = null;
 var modelData = [
-	require('./data/wmm-2020.json'),
-	require('./data/wmm-2015v2.json'),
-	require('./data/wmm-2015.json'),
+	{
+		file: require('./data/wmm-2025.json'),
+		startDate: new Date("2024-11-13T03:00:00.000Z"),
+		endDate: new Date("2029-11-13T03:00:00.000Z")
+	},
+	{
+		file: require('./data/wmm-2020.json'),
+		startDate: new Date("2019-12-10T08:00:00.000Z"),
+		endDate: new Date("2024-12-10T08:00:00.000Z")
+	},
+	{
+		file: require('./data/wmm-2015v2.json'),
+		startDate: new Date("2018-09-18T06:00:00.000Z"),
+		endDate: new Date("2023-09-18T06:00:00.000Z")
+	},
+	{
+		file: require('./data/wmm-2015.json'),
+		startDate: new Date("2014-12-15T07:00:00.000Z"),
+		endDate: new Date("2019-12-15T07:00:00.000Z")
+	}
 ];
 
-var base_model;
 
-geomagnetism.model = function(date) {
+geomagnetism.model = function (date, options = {}) {
 	date = date || new Date();
-	if (!models) {
-		models = modelData.map(function(data) {
-			return new Model(data);
-		});
+	const ts = date.getTime();
+
+	const allowOutOfBoundsModel = options.allowOutOfBoundsModel || false
+
+	// Get the latest matching model 
+	let matchingModelData = modelData.find((model) => {
+		return ts >= model.startDate.getTime() && ts <= model.endDate.getTime();
+	});
+
+	// Get if the date is before the first model or after the last model
+	if (!matchingModelData && ts < modelData[modelData.length - 1].startDate.getTime()) {
+		matchingModelData = modelData[modelData.length - 1];
+	} else if (!matchingModelData && ts > modelData[0].endDate.getTime()) {
+		matchingModelData = modelData[0];
 	}
 
-	var ts = date.getTime();
-	var matchingModel;
-	for (var i = 0, n = models.length; i < n; ++i) {
-		if (models[i].start_date.getTime() > ts) continue;
-		if (models[i].end_date.getTime() < ts) continue;
-		matchingModel = models[i];
-		break;
-	}
-	if (!matchingModel) {
-		matchingModel = models[0]; // latest (will throw error)
+	// If no matching model found, use the latest
+	if (!matchingModelData) {
+		matchingModelData = modelData[0]; // latest (will throw error if allowOutOfBoundsModel is true)
 	}
 
-	return matchingModel.getTimedModel(date);
+	const matchingModel = new Model(matchingModelData.file);
+
+	return matchingModel.getTimedModel(date, allowOutOfBoundsModel);
 };
